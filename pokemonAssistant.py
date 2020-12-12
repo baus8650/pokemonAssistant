@@ -120,44 +120,59 @@ for line in reader:
     pokemon.append(line)
 
 pokemonNameList = []
+pokemonTypeList = ['Normal', 'Fighting', 'Flying', 'Poison', 'Ground', 'Rock', 'Bug', 'Ghost', 'Steel', 'Fire', 'Water',
+                   'Grass', 'Electric', 'Psychic', 'Ice', 'Dragon', 'Fairy', 'Dark']
 
 
 for i in range(len(pokemon)):
     pokemonNameList.append(pokemon[i]['NAME'])
 
+searchType = input('Are you searching for a Pokemon or a type? (p/t) ').lower()
 loop = 0
 while loop == 0:
-    pokeSearch = input('What Pokemon are you looking up? ').title()
-    if pokeSearch not in pokemonNameList:
-        print("Sorry, that pokemon can't be found, please check the spelling and try again!")
+    if searchType == 'p':
+        pokeSearch = input('What Pokemon are you looking up? ').title()
+        if pokeSearch not in pokemonNameList:
+            print("Sorry, that pokemon can't be found, please check the spelling and try again!")
+        else:
+            for i in range(len(pokemon)):
+                if pokemon[i]['NAME'] == pokeSearch:
+                    if pokemon[i]['TYPE2'] == '':
+                        type = [pokemon[i]['TYPE1']]
+                        print('Type:', type[0])
+                        print('Strong against:', typeChart[type[0]]['Strong Against'])
+                        print('Weak against:', typeChart[type[0]]['Weak Against'])
+                        print('Resistant to:', typeChart[type[0]]['Resistant To'])
+                        print('Vulnerable to:', typeChart[type[0]]['Vulnerable To'])
+                    else:
+                        type = [pokemon[i]['TYPE1'], pokemon[i]['TYPE2']]
+                        print('Type: ', type[0], 'and', type[1])
+                        print(type[0], 'is strong against:', typeChart[type[0]]['Strong Against'])
+                        print(type[0], 'is weak against:', typeChart[type[0]]['Weak Against'])
+                        print(type[0], 'is resistant to:', typeChart[type[0]]['Resistant To'])
+                        print(type[0], 'is vulnerable to:', typeChart[type[0]]['Vulnerable To'])
+                        print(type[1], 'is strong against:', typeChart[type[1]]['Strong Against'])
+                        print(type[1], 'is weak against:', typeChart[type[1]]['Weak Against'])
+                        print(type[1], 'is resistant to:', typeChart[type[1]]['Resistant To'])
+                        print(type[1], 'is vulnerable to:', typeChart[type[1]]['Vulnerable To'])
+                        break
+            loop = 1
     else:
-        loop = 1
+        typeSearch = input('What type of Pokemon are you looking up? ').title()
+        if typeSearch not in pokemonTypeList:
+            print("Sorry, that type can't be found, please check the spelling and try again!")
+        else:
+            print(typeSearch, 'Pokemon are:')
+            print('Strong against:', typeChart[typeSearch]['Strong Against'])
+            print('Weak against:', typeChart[typeSearch]['Weak Against'])
+            print('Resistant to:', typeChart[typeSearch]['Resistant To'])
+            print('Vulnerable to:', typeChart[typeSearch]['Vulnerable To'])
+            loop = 1
 
-for i in range(len(pokemon)):
-    if pokeSearch not in pokemonNameList:
-        print("Sorry, that pokemon can't be found, please check the spelling and try again!")
-        break
-    else:
-        if pokemon[i]['NAME'] == pokeSearch:
-            if pokemon[i]['TYPE2'] == '':
-                type = [pokemon[i]['TYPE1']]
-                print('Type:', type[0])
-                print('Strong against:', typeChart[type[0]]['Strong Against'])
-                print('Weak against:', typeChart[type[0]]['Weak Against'])
-                print('Resistant to:', typeChart[type[0]]['Resistant To'])
-                print('Vulnerable to:', typeChart[type[0]]['Vulnerable To'])
-            else:
-                type = [pokemon[i]['TYPE1'],pokemon[i]['TYPE2']]
-                print('Type: ', type[0], 'and', type[1])
-                print(type[0], 'is strong against:', typeChart[type[0]]['Strong Against'])
-                print(type[0], 'is weak against:', typeChart[type[0]]['Weak Against'])
-                print(type[0], 'is resistant to:', typeChart[type[0]]['Resistant To'])
-                print(type[0], 'is vulnerable to:', typeChart[type[0]]['Vulnerable To'])
-                print(type[1], 'is strong against:', typeChart[type[1]]['Strong Against'])
-                print(type[1], 'is weak against:', typeChart[type[1]]['Weak Against'])
-                print(type[1], 'is resistant to:', typeChart[type[1]]['Resistant To'])
-                print(type[1], 'is vulnerable to:', typeChart[type[1]]['Vulnerable To'])
-                break
+
+
+
+
 
 
 
