@@ -119,13 +119,19 @@ pokemon = []
 for line in reader:
     pokemon.append(line)
 
-
-pokeSearch = input('What Pokemon are you looking up? ').title()
-
 pokemonNameList = []
+
 
 for i in range(len(pokemon)):
     pokemonNameList.append(pokemon[i]['NAME'])
+
+loop = 0
+while loop == 0:
+    pokeSearch = input('What Pokemon are you looking up? ').title()
+    if pokeSearch not in pokemonNameList:
+        print("Sorry, that pokemon can't be found, please check the spelling and try again!")
+    else:
+        loop = 1
 
 for i in range(len(pokemon)):
     if pokeSearch not in pokemonNameList:
