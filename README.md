@@ -1,3 +1,3 @@
 # pokemonAssistant
 
-Search for a pokemon, using its name, to reveal its type, strengths, and weaknesses
+Search for either a Pokemon or its type to reveal its type (Pokemon search only), strengths, and weaknesses
